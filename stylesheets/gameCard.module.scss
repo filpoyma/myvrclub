@@ -1,0 +1,131 @@
+$card-width: 282px;
+$card-height: 141px;
+
+$mobile-card-width: 141px;
+$mobile-card-height: 70px;
+
+.container {
+  width: $card-width;
+  height: $card-height;
+
+  cursor: pointer;
+  position: relative;
+
+  margin-bottom: 80px;
+  margin-right: 30px;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+.cover {
+  width: $card-width;
+  height: $card-height;
+  border-radius: 10px;
+
+  :hover > & {
+    transform: scale(1.009);
+    box-shadow: 0 4px 20px -8px #000000;
+    transition: 0.5s;
+  }
+
+  margin: 0;
+  transition: 0.5s;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+.title {
+  text-align: center;
+
+  :hover > & {
+    color: #3071eb;
+  }
+
+  margin: 0;
+  padding: 5px;
+}
+
+// DarkTheme
+.darkWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: $card-width;
+  height: $card-height;
+
+  background: linear-gradient(to bottom, black, rgba(255,0,0,0));
+  opacity: 0;
+
+  border-radius: 10px;
+
+  color: white;
+
+  :hover > & {
+    transform: scale(1.007);
+    opacity: 0.6;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+// Icon new
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: -7px;
+  left: 220px;
+
+  width: 50px;
+  height: 20px;
+
+  border-radius: 3px;
+
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
+}
+
+// Icon rating
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: -7px;
+  left: 10px;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 3px;
+
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: 15px;
+    height: 15px;
+  }
+}

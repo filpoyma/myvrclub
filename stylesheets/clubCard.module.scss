@@ -1,0 +1,100 @@
+$mobile-card-width: 140px;
+$mobile-card-height: 140px;
+
+.container {
+  position: relative;
+
+  cursor: pointer;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+  margin-right: 20px;
+
+  &:hover {
+    transform: scale(1.009);
+    box-shadow: 0 4px 20px -8px #000000;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+.cover {
+  width: 280px;
+  height: 280px;
+
+  border-radius: 10px;
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+.darkWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border-radius: 10px;
+
+  width: 280px;
+  height: 280px;
+
+  background: linear-gradient(to top, black, transparent);
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
+}
+
+.description {
+  color: white;
+  margin: 0 0 15px 15px;
+}
+
+// Icon rating
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 15px;
+  left: 10px;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 3px;
+
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .titleWrapper {
+    margin: 10px auto;
+  }
+
+  .title {
+    padding-left: 20px;
+    font-size: 15px;
+  }
+}
