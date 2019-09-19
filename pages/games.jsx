@@ -13,6 +13,7 @@ import Pagination from '../components/Pagination';
 
 // action creators
 import { getGamesAC, switchPaginationValueAC } from '../redux/actions';
+import Loading from '../components/Loading';
 
 class Games extends Component {
   handlePageChange = async (pageNumber) => {
@@ -20,10 +21,11 @@ class Games extends Component {
   };
 
   componentDidMount = async () => {
-      this.props.getGames();
+      await this.props.getGames();
   };
 
   render() {
+    const {games} = this.props;
     return (
       <div>
         <Header/>
@@ -33,9 +35,8 @@ class Games extends Component {
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.games.map((game, index) => {
-              return <GameCard key={index} game={game}/>;
-            })}
+            {(games.length !== 0) ? (games.map((game, index) => {
+              return <GameCard key={index} game={game}/>;})) : (<Loading/>)}
           </div>
         </div>
         <Pagination handlePageChange={this.handlePageChange}/>
