@@ -12,6 +12,7 @@ import ClubFilter from '../components/ClubFilter';
 import { getClubsAC } from '../redux/actions';
 import { connect } from 'react-redux';
 import Map from '../components/Map';
+import Loading from './Loading';
 
 class GamePage extends Component {
 
@@ -83,7 +84,7 @@ class GamePage extends Component {
           <ClubFilter gameId={this.props.game._id}/>
           <div className={cardsWrapper.cardsWrapper}>
             {loading
-              ? <div>Загрузка...</div>
+              ? <Loading/>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
                 : clubs && (this.props.map) ? <Map/> : (clubs.map((club, index) => {
