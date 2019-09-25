@@ -18,11 +18,10 @@ class GamePage extends Component {
 
   componentDidMount() {
     this.props.getClubs(undefined, undefined, this.props.game._id);
-    console.log('this.props.game._id', this.props.game._id);
 
     // ymaps.ready(init);
     // // let myMap;
-    //
+    
     // function init() {
     //   let myMap = new ymaps.Map("map", {
     //     center: [55.76, 37.64],
@@ -33,13 +32,14 @@ class GamePage extends Component {
 
   render() {
 
-
     const { game = [], clubs, loading, error} = this.props;
+    const clubItems = clubs.map((club, index) =>
+        <ClubCard key={index} club={club}/>);
     return (
       <main>
         <GameProfile game={game}/>
 
-        <section>
+        {/* <section>
           <div className={styles.container}>
             <p className={styles.profileMenu}>Игры клуба</p>
             <p className={styles.profileMenu}>Цены</p>
@@ -48,11 +48,13 @@ class GamePage extends Component {
             <p className={styles.profileMenu}>Контакты</p>
           </div>
           <hr className={styles.breakLine}/>
-        </section>
+        </section> */}
 
-        {/*{(this.props.map) ? <Map /> : <p>qweqr</p>}*/}
+        <h2>Где поиграть в {game.name}</h2>
 
-        {/*{(this.props.map) ? <Map /> :*/}
+        {/* {(this.props.map) ? <Map /> : <p>qweqr</p>} */}
+
+        {/* {(this.props.map) ? <Map /> : */}
           {/*<div className={cardsWrapper.container}>*/}
             {/*<ClubFilter gameId={this.props.game._id}/>*/}
             {/*<div className={cardsWrapper.cardsWrapper}>*/}
@@ -65,7 +67,7 @@ class GamePage extends Component {
                 {/*}))}*/}
             {/*</div>*/}
           {/*</div>*/}
-        {/*}*/}
+        {/*} */}
 
         {/*<div className={cardsWrapper.container}>*/}
           {/*<ClubFilter gameId={this.props.game._id}/>*/}
@@ -87,13 +89,11 @@ class GamePage extends Component {
               ? <Loading/>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : clubs && (this.props.map) ? <Map/> : (clubs.map((club, index) => {
-                return <ClubCard key={index} club={club}/>;
-              }))}
+                : clubs && (this.props.map) ? <Map/> : (clubItems)}
           </div>
         </div>
-        <hr className={styles.breakLine}/>
-        <Reviews />
+        {/* <hr className={styles.breakLine}/> */}
+        {/* <Reviews /> */}
       </main>
     );
   }

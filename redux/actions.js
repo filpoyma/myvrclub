@@ -22,7 +22,7 @@ export const getClubsAC = (
   pagination = 1,
   gameId = '') => (
   async (dispatch) => {
-    console.log('InitState', InitState);
+    //console.log('InitState', InitState);
     dispatch(request());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
@@ -156,3 +156,26 @@ export const offChangeMapAC = () => {
     type: actionTypes.OFF_CHANGE_MAP,
   }
 };
+
+// Показать мобильный фильтр
+export const showFilterToggleAC = () => {
+  return {
+    type: actionTypes.SHOW_FILTER_TOGGLE,
+  }
+};
+
+// Двигаем карусель на главной
+export const switchCaruselIndexAC = (caruselIndex) => {
+  return {
+    type: actionTypes.SWITCH_CARUSEL_INDEX,
+    caruselIndex,
+  }
+}
+
+// Меняем screenMode
+export const switchScreenModeAC = (screenMode) => {
+  return {
+    type: actionTypes.SWITCH_SCREEN_MODE,
+    screenMode,
+  }
+}
