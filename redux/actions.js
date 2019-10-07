@@ -9,8 +9,13 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
-export const request = () => (
-  { type: actionTypes.REQUEST }
+// Получение игр
+export const requestGetGames = (data) => (
+  { type: actionTypes.REQUESTED_GAMES, games: data }
+);
+
+export const requestClubs = () => (
+  { type: actionTypes.REQUEST_CLUBS }
 );
 
 export const requestGames = () => (
@@ -23,7 +28,7 @@ export const getClubsAC = (
   gameId = '') => (
   async (dispatch) => {
     //console.log('InitState', InitState);
-    dispatch(request());
+    dispatch(requestClubs());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
     if (filterToggleData) {
@@ -43,7 +48,6 @@ export const getClubsAC = (
       pagination,
       gameId
     };
-
     const resp = await fetch(`${API_PREFIX}/club`, {
       method: 'POST',
       headers: {
@@ -56,10 +60,6 @@ export const getClubsAC = (
   }
 );
 
-// Получение всех игр при первой загрузке
-export const requestGetGames = (data) => (
-  { type: actionTypes.REQUESTED_GAMES, games: data }
-);
 
 export const getGamesAC = (
   filterToggleData = InitState.gamesFilterToggle,
@@ -67,7 +67,6 @@ export const getGamesAC = (
   clubId = '',
 ) => (
   async (dispatch) => {
-
     dispatch(requestGames());
     let checkedToggle = {};
 
@@ -88,7 +87,6 @@ export const getGamesAC = (
       pagination,
       clubId,
     };
-    console.log(filterData);
 
     const resp = await fetch(`${API_PREFIX}/game`, {
       method: 'POST',
@@ -99,6 +97,7 @@ export const getGamesAC = (
     });
     const data = await resp.json();
     dispatch(requestGetGames(data));
+
   }
 );
 
@@ -112,7 +111,6 @@ export const filterToggleClubsAC = (item, category) => (
     dispatch(requestFilterToggleClubs(item, category));
   }
 );
-
 
 // Фильтр игр
 export const requestFilterToggleGames = (item, category) => (
@@ -133,7 +131,6 @@ export const requestSwitchPaginationValue = (value) => (
 export const switchPaginationValueAC = (value, filterToggleData, type) => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
-    console.log(filterToggleData);
     if (type === 'game') {
       dispatch(getGamesAC(filterToggleData, value));
     }
@@ -178,4 +175,44 @@ export const switchScreenModeAC = (screenMode) => {
     type: actionTypes.SWITCH_SCREEN_MODE,
     screenMode,
   }
-}
+};
+
+
+//********LOGIN-LOGOUT**************
+export const requestLogin = (values) => (
+  async (dispatch) => {
+    dispatch(requestLoginAC());
+    console.log('values action', values);
+    const resp = await fetch(API_PREFIX + '/admin/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
+
+    const data = await resp.json();
+
+    dispatch(requestEndLoginAC());
+     console.log('!!!!!!!!!!!!!!!!!!!!!', data.loginStatus);
+    if (data.loginStatus) dispatch(loginSucsessAC());
+    else dispatch(loginRejectAC());
+  }
+);
+
+
+export const requestLoginAC = () => {
+  return { type: actionTypes.REQUEST_LOGIN }
+};
+export const requestEndLoginAC = () => {
+  return { type: actionTypes.REQUEST_END_LOGIN }
+};
+
+export const loginSucsessAC = () => {
+  return { type: actionTypes.LOGIN_SUCSESS }
+};
+export const loginRejectAC = () => {
+  return { type: actionTypes.LOGIN_REJECT }
+};
+
+//*******************END-LOGIN-LOGOUT********************

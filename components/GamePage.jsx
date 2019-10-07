@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // SASS
 import styles from '../stylesheets/gamePage.module.scss';
@@ -9,14 +10,24 @@ import ClubCard from '../components/ClubCard';
 import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
-import { getClubsAC } from '../redux/actions';
-import { connect } from 'react-redux';
 import Map from '../components/Map';
 import Loading from './Loading';
+import FilterButton from '../components/FilterButton';
+
+// action creators
+import { getClubsAC, showFilterToggleAC } from '../redux/actions';
 
 class GamePage extends Component {
+  showFilter = () => {
+    this.props.showFilterToggle();
+  };
+
+  paginationHandler = () => {
+    this.props.autoPagination('club');
+  }
 
   componentDidMount() {
+    window.addEventListener('scroll', this.paginationHandler);
     this.props.getClubs(undefined, undefined, this.props.game._id);
 
     // ymaps.ready(init);
@@ -30,10 +41,15 @@ class GamePage extends Component {
     // }
   }
 
+  componentWillUnmount = async () => {
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
+  }
+
   render() {
 
-    const { game = [], clubs, loading, error} = this.props;
-    const clubItems = clubs.map((club, index) =>
+    const { game = [], clubs, loadingClub, error} = this.props;
+    const itemsClub = clubs.map((club, index) =>
         <ClubCard key={index} club={club}/>);
     return (
       <main>
@@ -50,7 +66,10 @@ class GamePage extends Component {
           <hr className={styles.breakLine}/>
         </section> */}
 
-        <h2>Где поиграть в {game.name}</h2>
+        <div className={cardsWrapper.titleWrapper}>
+          <h2>Где поиграть в {game.name}</h2>
+          <FilterButton showFilter={this.showFilter} />
+        </div>
 
         {/* {(this.props.map) ? <Map /> : <p>qweqr</p>} */}
 
@@ -83,13 +102,15 @@ class GamePage extends Component {
         {/*</div>*/}
 
         <div className={cardsWrapper.container}>
-          <ClubFilter gameId={this.props.game._id}/>
+          {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
+          {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
-            {loading
+            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            {/* {loadingClub
               ? <Loading/>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : clubs && (this.props.map) ? <Map/> : (clubItems)}
+                : clubs && (this.props.map) ? <Map/> : (clubItems)} */}
           </div>
         </div>
         {/* <hr className={styles.breakLine}/> */}
@@ -101,17 +122,21 @@ class GamePage extends Component {
 
 const mapStateToProps = (store) => {
   return {
+    showFilter: store.showFilter,
     clubs: store.clubs,
+    loadingClub: store.loadingClub,
     loading: store.loading,
     error: store.error,
     map: store.map,
+    screenMode: store.screenMode,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showFilterToggle: () => dispatch(showFilterToggleAC()),
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
