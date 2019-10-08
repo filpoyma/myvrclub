@@ -103,8 +103,8 @@ class Index extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  clubs: store.clubs,
-  games: store.games,
+  // clubs: store.clubs,
+  // games: store.games,
   caruselIndex: store.caruselIndex,
 });
 
