@@ -1,4 +1,3 @@
 import React, { Component } from 'react';
-import AdminGamePageEdit from '../../components/admin/clubs/AdminClubPageEdit';
-
-export default () => (<AdmincLUBPageEdit/>)
+import AdminClubs from './../../components/admin/clubs/AdminClubs'
+export default () => (<AdminClubs/>)

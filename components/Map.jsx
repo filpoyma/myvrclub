@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 class Map extends Component {
 
   componentDidMount() {
-    console.log(this.props.clubs);
 
     let baloons = [];
     this.props.clubs.forEach(el => {
