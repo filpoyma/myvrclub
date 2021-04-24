@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  > div {
+    margin: 0 15px 40px;
+  }
+
+  @media screen and (min-width: 425px) {
+    // box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    // border-radius: 10px;
+    // min-width: 940px;
+
+    // margin-left: 40px;
+    padding: 40px 20px;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+
+  margin: 40px auto;
+  padding-left: 15px;
+}
+
+.filterButton {
+  display: none;
+}
+
+// Mobile
+@media screen and (max-width: 425px) {
+  .container {
+    flex-direction: column;
+    align-content: center;
+
+    padding-left: 0;
+  }
+
+  .cardsWrapper {
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .titleWrapper {
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 0 20px;
+
+    h2 {
+      margin-left: 15px;
+    }
+  }
+
+  .title {
+    font-size: 15px;
+    margin-left: 20px;
+  }
+}

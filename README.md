@@ -1,4 +1,7 @@
-# [myvrclub.ru](http://myvrclub.ru)
+# [myvrclub.ru](https://myvrclub.herokuapp.com)
+
+## Технологии
+Next.js, ReactJS, Redux, NodeJS.
 
 ## Описание
 Агрегатор клубов виртуалной реальности
@@ -22,12 +25,12 @@
 ## Как запустить
 В директории myvrclub/backend
 ```
-npm install
-node app.js
+npm i
+npm start
 ```
 В директории myvrclub/frontend
 ```
-npm install
+npm i
 npm run build
 npm run start
 ```

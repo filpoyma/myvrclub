@@ -1,0 +1,58 @@
+
+// :global {
+//   @import '~react-autocomplete-input/dist/bundle.css';
+// }
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 170px;
+
+  margin-right: 30px;
+  padding: 0 10px;
+
+  div label {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 425px) {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    padding: 10px 0;
+    margin-right: 0;
+
+    width: 100%;
+
+    border: none;
+  }
+}
+
+.metroInput {
+  cursor: text;
+  height: 25px;
+  padding-left: 10px;
+}
+
+.filterCheckbox {
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+}
+
+.filterButton {
+  display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .filterButton {
+    display: block;
+  }
+
+  .breakLine {
+    width: 80px;
+  }
+}

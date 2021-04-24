@@ -1,0 +1,36 @@
+.profileInformations {
+    width: 360px;
+
+    @media screen and (max-width: 425px) {
+			width: 100%;
+    }
+  }
+
+  p {
+    text-align: justify;
+  }
+  
+  .profileInformations p span {
+    font-weight: 700;
+	}
+	
+	.cover {
+    border-radius: 5px;
+
+		@media screen and (max-width: 425px) {
+			display: none;
+    }
+  }
+  
+  .button {
+    width: 100%;
+
+    background-color: #2196F3;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(33, 130, 209);
+    }
+  }

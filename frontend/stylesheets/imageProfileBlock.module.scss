@@ -1,0 +1,35 @@
+.screenshotsSwitch {
+  display: flex;
+}
+
+.img {
+  width: 750px;
+  margin: 0 auto;
+
+  border-radius: 5px;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
+}
+
+.screen {
+  width: 144px;
+  height: 81px;
+
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 7.5px;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 19%;
+    max-height: 45px;
+
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
+  }
+}
