@@ -77,23 +77,6 @@ class Index extends Component {
       await this.props.switchCaruselIndex(index);
     }
   };
-  //   if (side === 'right') {
-  //     let firstElem = newData.shift();
-  //     newData.splice(newData.length, 0, firstElem);
-  //     this.setState({ caruselData: newData });
-  //     this.props.switchCaruselIndex(index - 1);
-  //   }
-  // };
-
-  // switchCarusel = async (index) => {
-  //   if (index === 0) {
-  //     await this.props.switchCaruselIndex(4);
-  //   } else if (index === 5) {
-  //     await this.props.switchCaruselIndex(1);
-  //   } else {
-  //     await this.props.switchCaruselIndex(index);
-  //   }
-  // }
 
   render() {
     const { games, clubs, screenMode } = this.props;
@@ -115,17 +98,6 @@ class Index extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        {/*/!*<IndexSearch />*!/*/}
-        {/*<div className={styles.title}>*/}
-        {/*<h1>myvrclub.ru</h1>*/}
-        {/*<h1>Агрегатор клубов виртуальной реальности</h1>*/}
-        {/*</div>*/}
-        {/* {(screenMode === 'desktop') && <Carusel
-          caruselIndex={this.props.caruselIndex}
-          switchCarusel={this.switchCarusel}
-          caruselData={this.state.caruselData}
-          screenMode={screenMode}
-        />} */}
 
         <WhiteContainer>
           {(screenMode === 'desktop') ?
